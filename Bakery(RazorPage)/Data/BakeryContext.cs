@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using wwwroot.Models;
+using Bakery_RazorPage_.Models;
 
 namespace Data
 {

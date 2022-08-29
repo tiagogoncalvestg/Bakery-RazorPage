@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace wwwroot.Models
+namespace Bakery_RazorPage_.Models
 {
     [Table("product")]
     public class Product
