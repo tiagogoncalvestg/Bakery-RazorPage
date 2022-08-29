@@ -1,4 +1,4 @@
-using Data;
+using Bakery_RazorPage_.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

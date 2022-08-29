@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Bakery_RazorPage_.Models;
 
-namespace Data
+namespace Bakery_RazorPage_.Data
 {
     public static class ModelBuilderExtensions
     {
-        public static ModelBuilder Seed(this ModelBuilder modelBuilder){
+        public static ModelBuilder Seed(this ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {

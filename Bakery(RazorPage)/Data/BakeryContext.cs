@@ -1,19 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Bakery_RazorPage_.Models;
 
-namespace Data
+namespace Bakery_RazorPage_.Data
 {
-    public class BakeryContext:DbContext
+    public class BakeryContext : DbContext
     {
-        public DbSet<Product> Products{get; set;}
+        public DbSet<Product> Products { get; set; }
 
-        public BakeryContext(DbContextOptions options):base(options)
+        public BakeryContext(DbContextOptions options) : base(options)
         {
-            
+
         }
-         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            ModelBuilderExtensions.Seed(modelBuilder);
+            modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
     }

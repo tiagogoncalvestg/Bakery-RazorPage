@@ -1,7 +1,7 @@
-﻿using Data;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Bakery_RazorPage_.Models;
 using Microsoft.EntityFrameworkCore;
+using Bakery_RazorPage_.Data;
 
 namespace Bakery_RazorPage_.Pages
 {
