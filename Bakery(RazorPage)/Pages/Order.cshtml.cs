@@ -3,6 +3,8 @@ using Bakery_RazorPage_.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
+using System.Net.Mail;
 
 namespace Bakery_RazorPage_.Pages
 {
@@ -31,6 +33,31 @@ namespace Bakery_RazorPage_.Pages
             Product = await _context.Products.FindAsync(Id);
             if (ModelState.IsValid)
             {
+                var body = $@"<p>Thank you, we have received your order for 
+                    {OrderQuantity} unit(s) of {Product.Name}!</p>
+                    <p>Your address is: <br/>{OrderShipping.Replace("\n", "<br/>")}</p>
+                    Your total is ${Product.Price * OrderQuantity}.<br/>
+                    We will contact you if we have questions about your order.  Thanks!<br/>";
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "testes@hotmail.com",  // replace with valid value
+                        Password = "********8"  // replace with valid value
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp-mail.outlook.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    var message = new MailMessage();
+                    message.To.Add(OrderEmail);
+                    message.Subject = "Fourth Coffee - New Order";
+                    message.Body = body;
+                    message.IsBodyHtml = true;
+                    message.From = new MailAddress("example@gmail.com");
+                    await smtp.SendMailAsync(message);
+                }
+
                 return RedirectToPage("OrderSuccess");
             }
             return Page();
